@@ -1,18 +1,6 @@
 var score = 0;
 var max = 0;
 
-var learn = false;
-
-function toggleLearn() {
-    if (learn) {
-        learn = false;
-        console.log("learn mode turned off");
-    } else {
-        learn = true;
-        console.log("learn mode turned on");
-    }
-}
-
 // sets the color of the box to a random rgb value
 function setColor() {
     var r = Math.floor(Math.random()*256);
