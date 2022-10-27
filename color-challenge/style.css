@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+div {
+    /* border: 1px dotted blue; */
+}
+
+#info {
+    height: 65px;
+    width: 100%;
+    margin-top: 10px;
+    display: none;
+}
+
+#learn-text {
+    display: block;
+    float: left;
+}
+
+#learn{
+    display: block;
+    float: left;
+    transform: scale(1.25);
+    margin: 5px 0 0 5px;
+}
+
+.columns {
+    display: block;
+    visibility: visible;
+    float: left;
+    width: 30%;
+    height: 395px;
+}
+
+#left {
+    margin-left: 1%;
+}
+
+.buttons {
+    margin-top: 5px;
+}
+
+.holders {
+    width: 100%;
+}
+
+.text {
+    width: 200px;
+    text-align: center;
+    margin-left: 100px;
+}
+
+.range {
+    width: 202px;
+    margin-top: 15px;
+}
+
+.boxes {
+    height: 200px;
+    width: 200px;
+    border: 1px black solid;
+    margin-top: 20px;
+}
+
+.color-holder {
+    height: 225px;
+    display: block;
+    float: left;
+}
+
+#color-box {
+    background-color: rgb(220,220,220);
+    margin-left: 100px;
+}
+
+#guess {
+    margin-left: 100px;
+}
+
+#range-val {
+    margin-top: 5px;
+}
+
+#check {
+    display: block;
+    margin-left: 145px;
+}
+
+#next {
+    display: none;
+    margin-left: 174px;
+}
+
+#right {
+    visibility: hidden;
+}
+
+#grey-box {
+    margin-left: 100px;
+}
+
+#results {
+    width: 200px;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 5px;
+}
+
+#points {
+    color: blue;
+}
+
+#references {
+    width: 95%;
+    display: block;
+    float: left;
+    margin-left: 0.4%;
+}
+
+.refs {
+    width: 84px;
+    height: 84px;
+    display: block;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+}
+.refs p {
+    margin-top: 26px;
+}
+
+#very-dark {
+    background-color: rgb(25, 25, 25);
+    color: white;
+}
+
+#dark {
+    background-color: rgb(85, 85, 85);
+    color: white;
+}
+
+#medium {
+    background-color: rgb(128, 128, 128);
+    color: black;
+}
+
+#light {
+    background-color: rgb(170, 170, 170);
+    color: black;
+}
+
+#very-light {
+    background-color: rgb(230, 230, 230);
+    color: black;
+}
