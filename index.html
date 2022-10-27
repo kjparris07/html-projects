@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>color challenge</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="scripts.js"></script>
+    </head>
+    <body onload="setColor()">
+        <div id="info">
+            <div id="learn-text">learn mode</div>
+            <input type="checkbox" id="learn" oninput="toggleLearn()">
+        </div>
+        <div class="columns" id="left">
+            <div class="holders" class="color-holder">
+                <div class="boxes" id="color-box"></div>
+            </div>
+            <div class="holders" id="buttons">
+                <input type="range" min="0" value="127" max="255" id="guess" class="range" oninput="updateRangeVal()">
+                <div class="text" id="range-val">127</div>
+                <div class="text" id="category-guess">medium</div>
+                <div class="text" id="score">score: 0/0</div>
+                <div class="buttons">
+                    <button type="button" id="check" onclick="checkGuess()">check guess</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns" id="right">
+            <div class="holders" class="color-holder">
+                <div class="boxes" id="grey-box"></div>
+            </div>
+            <div class="holders" id="results">
+                <input type="range" min="0" value="127" max="255" id="actual-range" class="range" disabled>
+                <div id="actual"></div>
+                <div id="category"></div>
+                <div id="points"></div>
+            </div>
+            <div class="buttons">
+                <button type="button" id="next" onclick="next()">next</button>
+            </div>
+
+        </div>
+        
+        <div id="references">
+            <div class="refs" id="very-dark"><p>very dark<br>(0–51)</p></div>
+            <div class="refs" id="dark"><p>dark<br>(52–102)</p></div>
+            <div class="refs" id="medium"><p>medium<br>(103–136)</p></div>
+            <div class="refs" id="light"><p>light<br>(136–187)</p></div>
+            <div class="refs" id="very-light"><p>very light<br>(188–255)</p></div>
+        </div>
+
+    </body>
+</html>
