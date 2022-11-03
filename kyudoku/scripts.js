@@ -1,5 +1,5 @@
 // var darkMode = false;
-var puzzles = ["267442244599857158429549425882[5]62325", "68685632836341875337717598489[5]589827", "647847961578356[6]39552463435285741374", "976126724964[7]99664739384845822138342", "2727688446134389[6]8429687823767358298", "398[6]71639558623368229643743265648899", "92515899792726855313[5]534362782359756", "329649985863496358[5]14729879379228353", "795586455[6]65373494194356532682836159", "642359538441173319[1]24587358731931636"];
+var puzzles = ["267442244599857158429549425882[5]62325", "68685632836341875337717598489[5]589827", "647847961578356[6]39552463435285741374", "976126724964[7]99664739384845822138342", "2727688446134389[6]8429687823767358298", "398[6]71639558623368229643743265648899", "92515899792726855313[5]534362782359756", "329649985863496358[5]14729879379228353", "795586455[6]65373494194356532682836159", "642359538441173319[1]24587358731931636", "568769846459826867373[6]76136585727682", "489954386525861613629464454[1]57976863"];
 
 var lightred = "rgb(222, 95, 95)";
 
@@ -11,8 +11,8 @@ for (let i=0; i<36; i++) {
     arr[i] = inputList[i];
 }
 
-fill(puzzles[0], 1);
-var currentPuzzle = 0;
+var currentPuzzle = -1;
+nextPuzzle();
 
 function toggle() {
     var color = event.target.style.backgroundColor;
@@ -41,10 +41,10 @@ function disable() {
 
 function fillFromBox() {
     var nums = document.getElementById('fillBox').value;
-    fill(nums, "User Input");
+    fill(nums, "X", "UserInput");
 }
 
-function fill(nums, name) {
+function fill(nums, name, creator) {
     reset();
 
     var listIndex = 0;
@@ -52,6 +52,13 @@ function fill(nums, name) {
     if (key != null) {
         document.getElementsByTagName('div')[key].setAttribute("onclick", "toggle()");
         key -= parseInt(key/6) + 1;
+
+        // bug: keys for odd puzzles 5 and after are 1 too large
+        if (currentPuzzle+1 > 4) {
+            if ((currentPuzzle+1) % 2 != 0) {
+                key--; // temp fix
+            }
+        }
         inputList[key].style.backgroundColor = "";
     }
 
@@ -70,6 +77,7 @@ function fill(nums, name) {
     }
     disable();
     document.getElementById('puzzleNum').innerHTML = name;
+    document.getElementById('creator').innerHTML = creator;
 }
 
 function check(target) {
@@ -90,7 +98,7 @@ function check(target) {
     var index = item - 6;
     while (index >= 0) {
         var compare = inputList[index];
-        if (compare.style.backgroundColor == "lightgreen") {
+        if (compare.style.backgroundColor == "lightgreen" || compare.style.backgroundColor == "gold") {
             sum += parseInt(compare.value);
             column.push(parseInt(index));
         }
@@ -101,14 +109,14 @@ function check(target) {
     index = item + 6;
     while (index < 36) {
         var compare = inputList[index];
-        if (compare.style.backgroundColor == "lightgreen") {
+        if (compare.style.backgroundColor == "lightgreen" || compare.style.backgroundColor == "gold") {
             sum += parseInt(compare.value);
             column.push(index);
         }
         index += 6;
     }
 
-    if (focus.style.backgroundColor == "lightgreen") {
+    if (focus.style.backgroundColor == "lightgreen" || focus.style.backgroundColor == "gold") {
         sum += parseInt(focus.value);
         column.push(item);
         if (sum > 9) {
@@ -128,7 +136,7 @@ function check(target) {
 
     while (mod > 0) {
         var compare = inputList[index];
-        if(compare.style.backgroundColor == "lightgreen") {
+        if(compare.style.backgroundColor == "lightgreen" || compare.style.backgroundColor == "gold") {
             sum += parseInt(compare.value);
             row.push(parseInt(index));
         }
@@ -142,7 +150,7 @@ function check(target) {
 
     while (mod > 0) {
         var compare = inputList[index];
-        if (compare.style.backgroundColor == "lightgreen") {
+        if (compare.style.backgroundColor == "lightgreen" || compare.style.backgroundColor == "gold") {
             sum += parseInt(compare.value);
             row.push(parseInt(index));
         }
@@ -150,7 +158,7 @@ function check(target) {
         index++;
     }
 
-    if (focus.style.backgroundColor == "lightgreen") {
+    if (focus.style.backgroundColor == "lightgreen" || focus.style.backgroundColor == "gold") {
         sum += parseInt(focus.value);
         row.push(item);
         if (sum > 9) {
@@ -190,13 +198,20 @@ function reset() {
     }
 }
 
-function newPuzzle() {
-    if (currentPuzzle + 1 == puzzles.length) {
+function nextPuzzle() {
+    if (currentPuzzle + 1 >= puzzles.length) {
         currentPuzzle = 0;
     } else {
         currentPuzzle++;
     }
-    fill(puzzles[currentPuzzle], currentPuzzle + 1);
+
+    if (currentPuzzle == 9) {
+        fill(puzzles[currentPuzzle], currentPuzzle + 1,
+            '<a href="https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?chlang=en&id=0003R6" target="_blank">Rotstein (Logic Masters Germany)</a>');
+    } else {
+        fill(puzzles[currentPuzzle], currentPuzzle + 1, '<a href="https://www.brainzilla.com/logic/kyudoku/" target="_blank">Brainzilla</a>');
+    }
+
 }
 
 // function toggleColor() {

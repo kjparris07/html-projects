@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    /* border: 1px solid black; */
+    color: black;
 }
 
 /* .darkMode {
@@ -14,16 +14,16 @@
     color: black;
 } */
 
-#headings {
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
-}
-
 button {
     padding: 5px 10px;
     font-size: 15px;
     font-weight: bold;
+}
+
+#headings {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
 }
 
 .row {
