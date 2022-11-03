@@ -4,6 +4,22 @@
     /* border: 1px solid black; */
 }
 
+/* .darkMode {
+    background-color: black;
+    color: white;
+}
+
+.lightMode {
+    background-color: white;
+    color: black;
+} */
+
+#headings {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
 button {
     padding: 5px 10px;
     font-size: 15px;
@@ -13,16 +29,12 @@ button {
 .row {
     display: block;
     float: left;
-    /* "center" align */
-    width: 67%;
-    margin-left: 34%;
-    /* left align */
-    /* width: 100%; */
-    /* margin-left: 33px; */
+    width: 64.8%;
+    margin-left: 35.2%;
 }
 
 #first {
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 #last {
@@ -48,16 +60,19 @@ button {
 
 #buttons {
     display: block;
-    margin-left: 41%;  /* "center" align */
-    /* margin-left: 120px; /* left align */ */
+    margin-left: 37.9%;
 }
 
 #fill {
     margin-top: 35px;
-    margin-left: 35.5%; /* "center" align */
-    /* margin-left: 50px; /* left align */ */
+    margin-left: 36.6%;
 }
 
 #fillBox {
     font-size: 15px;
+}
+
+#notes {
+    margin-top: 35px;
+    margin-left: 36.4%;
 }

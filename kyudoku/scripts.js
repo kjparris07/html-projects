@@ -1,16 +1,18 @@
-var puzzles = ["642359538441173319[1]24587358731931636", "267442244599857158429549425882[5]62325"];
+// var darkMode = false;
+var puzzles = ["267442244599857158429549425882[5]62325", "68685632836341875337717598489[5]589827", "647847961578356[6]39552463435285741374", "976126724964[7]99664739384845822138342", "2727688446134389[6]8429687823767358298", "398[6]71639558623368229643743265648899", "92515899792726855313[5]534362782359756", "329649985863496358[5]14729879379228353", "795586455[6]65373494194356532682836159", "642359538441173319[1]24587358731931636"];
 
-var inputList = document.getElementsByTagName('input');
+var lightred = "rgb(222, 95, 95)";
 
 var key;
 
+var inputList = document.getElementsByTagName('input');
 var arr = new Array(36);
-
 for (let i=0; i<36; i++) {
     arr[i] = inputList[i];
 }
 
-var lightred = "rgb(222, 95, 95)";
+fill(puzzles[0], 1);
+var currentPuzzle = 0;
 
 function toggle() {
     var color = event.target.style.backgroundColor;
@@ -37,13 +39,20 @@ function disable() {
     }
 }
 
-function fill() {
-    reset();
+function fillFromBox() {
     var nums = document.getElementById('fillBox').value;
+    fill(nums, "User Input");
+}
+
+function fill(nums, name) {
+    reset();
+
     var listIndex = 0;
 
     if (key != null) {
         document.getElementsByTagName('div')[key].setAttribute("onclick", "toggle()");
+        key -= parseInt(key/6) + 1;
+        inputList[key].style.backgroundColor = "";
     }
 
     for (let i=0; i<nums.length; i++) {
@@ -51,8 +60,8 @@ function fill() {
             i++;
             inputList[listIndex].value = nums.charAt(i);
             inputList[listIndex].style.backgroundColor = "gold";
-            key = parseInt(listIndex + listIndex/6 + 1);
-            document.getElementsByTagName('div')[parseInt(listIndex + listIndex/6 + 1)].onclick="";
+            key = parseInt(listIndex + listIndex/6 + 2);
+            document.getElementsByTagName('div')[key].onclick="";
             i++;
         } else {
             inputList[listIndex].value = nums.charAt(i);
@@ -60,6 +69,7 @@ function fill() {
         listIndex++;
     }
     disable();
+    document.getElementById('puzzleNum').innerHTML = name;
 }
 
 function check(target) {
@@ -179,3 +189,22 @@ function reset() {
         }
     }
 }
+
+function newPuzzle() {
+    if (currentPuzzle + 1 == puzzles.length) {
+        currentPuzzle = 0;
+    } else {
+        currentPuzzle++;
+    }
+    fill(puzzles[currentPuzzle], currentPuzzle + 1);
+}
+
+// function toggleColor() {
+//     if (darkMode) {
+//         document.body.className = "lightMode";
+//         document.getElementsByTagName('button')[0].innerHTML = "change to dark mode";
+//     } else {
+//         document.body.className = "darkMode";
+//         document.getElementsByTagName('button')[0].innerHTML = "change to light mode";
+//     }
+// }
