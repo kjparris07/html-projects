@@ -1,10 +1,15 @@
 const nums = document.getElementsByClassName("numbers");
 
-var n;
-var iterate = 0;
-
 function start() {
-    console.log(partition(0, 1, nums.length - 1));
+    quicksort(0, nums.length-1);
+}
+function quicksort(lo, hi) {
+    var pivot = lo++;
+    if (lo <= hi) {
+        var index = partition(pivot, lo, hi);
+        quicksort(pivot, index - 1);
+        quicksort(index + 1, hi);
+    }
 }
 
 function partition(pivot, lo, hi) {
@@ -12,11 +17,11 @@ function partition(pivot, lo, hi) {
     var loVal = parseInt(nums[lo].innerHTML);
     var hiVal = parseInt(nums[hi].innerHTML);
 
-    while (lo < nums.length && loVal <= pivotVal) {
+    while (lo < nums.length - 1 && loVal <= pivotVal) {
         loVal = parseInt(nums[++lo].innerHTML);
     }
 
-    while (hi >= 0 && hiVal > pivotVal) {
+    while (hi > 0 && hiVal > pivotVal) {
         hiVal = parseInt(nums[--hi].innerHTML);
     }
 
@@ -26,12 +31,8 @@ function partition(pivot, lo, hi) {
         nums[hi].innerHTML = temp;
         return partition(pivot, lo, hi);
     } else {
-        nums[hi].style.backgroundColor = "black";
-        nums[hi].style.color = "white";
-
         nums[pivot].innerHTML = hiVal;
         nums[hi].innerHTML = pivotVal;
-        n = hi;
         return hi;
     }
 }
